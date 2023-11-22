@@ -2,12 +2,13 @@
   <mat-form-field class="os-input-style">
     <mat-label>{{ label }}</mat-label>
 
-    <mat-select [formControl]="formControl" [value]="_value">
+    <mat-select [formControl]="formControl" [value]="value">
       <mat-option *ngIf="visibleItemsCount >= 5">
         <ngx-mat-select-search
           #selectSearch
           [disableInitialFocus]="true"
-          (change)="searchValueChanged(selectSearch.value)"
+          [ngModel]="searchInputValue"
+          (ngModelChange)="searchValueChanged(selectSearch.value)"
           (click)="$event.stopPropagation();"
           placeholderLabel="Search"
           noEntriesFoundLabel="No matches"
@@ -17,7 +18,7 @@
       </mat-option>
       <ng-container *ngIf="!!items">
         <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
-          <ng-container *cdkVirtualFor="let optionValue of items; let i = index" class="item">
+          <ng-container *cdkVirtualFor="let optionValue of options; let i = index" class="item">
             <mat-option
               *ngIf="i < visibleItemsCount"
               (click)="valueChanged(optionValue.id)"

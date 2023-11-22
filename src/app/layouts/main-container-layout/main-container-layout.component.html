@@ -5,7 +5,7 @@
     <select-input
       [items]="(items$ | async)!"
       [visibleItemsCount]="6"
-      (valueChangedEvent)="selectItemEventHandler($event)"
+      (valueChangedEvent)="selectItemEventHandler()"
       (searchValueChangeEvent)="searchInputValueChange($event)"
       formControlName="selectControl1"
     ></select-input>
@@ -14,19 +14,21 @@
     <p>Example formControl</p>
     <select-input
       [items]="(items$ | async)!"
-      [visibleItemsCount]="3"
-      (valueChangedEvent)="selectItemEventHandler($event)"
+      [visibleItemsCount]="4"
+      (valueChangedEvent)="selectItemEventHandler()"
       (searchValueChangeEvent)="searchInputValueChange($event)"
       [formControl]="selectControl2"
     ></select-input>
   </div>
 </form>
-<!--<form>-->
-<!--  <div class="form-field">-->
-<!--    <select-input-->
-<!--      [items]="(items$ | async)!"-->
-<!--      [(ngModel)]="searchInputValue"-->
-<!--      (ngModelChange)="searchInputValueChange($event)"-->
-<!--    ></select-input>-->
-<!--  </div>-->
-<!--</form>-->
+
+
+<div class="form-field">
+  <select-input
+    [items]="(items$ | async)!"
+    [visibleItemsCount]="5"
+    [ngModel]="selectedValue"
+    (searchValueChangeEvent)="searchInputValueChange($event)"
+  ></select-input>
+</div>
+

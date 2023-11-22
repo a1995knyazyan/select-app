@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {SelectDataI} from "../../shared/interfaces/select-data.interface";
 import {SelectionDataService} from "../../shared/services/selection-data.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-main-container-layout',
@@ -12,33 +12,28 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class MainContainerLayoutComponent implements OnInit {
   items$: Observable<SelectDataI[]> = this.selectionDataService.selectionData$;
 
-  selectFormGroup!: FormGroup;
-  selectControl2: FormControl = new FormControl([]);
-  searchInputValue: number = 0;
+  selectFormGroup: FormGroup = this.formBuilder.group({
+    selectControl1: new FormControl(null)
+  });
+  selectControl2: FormControl = new FormControl(null);
+  selectedValue: number = 0;
 
   constructor(
-    private selectionDataService: SelectionDataService
+    private selectionDataService: SelectionDataService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.fetchSelectionData();
-    this.initializeForm();
   }
 
-  initializeForm(): void {
-    this.selectFormGroup = new FormGroup({
-      selectControl1: new FormControl([])
-    });
+  searchInputValueChange(keyword: string): void {
+    console.log(keyword);
   }
 
-  searchInputValueChange(event: any): void {
-    debugger;
-    console.log(event);
-  }
-
-  selectItemEventHandler(selectedItemId: number): void {
-    console.log('selected item', selectedItemId);
-    console.log(this.selectFormGroup);
+  selectItemEventHandler(): void {
+    console.log('formControlName usage value', this.selectFormGroup.controls['selectControl1'].value);
+    console.log('formControl usage value', this.selectControl2.value);
   }
 
   fetchSelectionData(): void {

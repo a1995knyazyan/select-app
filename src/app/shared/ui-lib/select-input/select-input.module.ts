@@ -1,6 +1,6 @@
 import { forwardRef, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,7 +18,7 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
     MatSelectModule,
     FormsModule,
     ScrollingModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
   ],
   declarations: [SelectInputComponent],
   exports: [SelectInputComponent],
@@ -27,11 +27,6 @@ import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectInputComponent),
       multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: forwardRef(() => SelectInputComponent)
     }
   ]
 })

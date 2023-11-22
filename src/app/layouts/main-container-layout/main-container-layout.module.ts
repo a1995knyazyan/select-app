@@ -5,8 +5,6 @@ import {MainContainerLayoutRouting} from "./main-container-layout.routing";
 import {SelectInputModule} from "../../shared/ui-lib/select-input/select-input.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
-
-
 @NgModule({
   declarations: [
     MainContainerLayoutComponent
@@ -14,9 +12,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     MainContainerLayoutRouting,
-    ReactiveFormsModule,
     SelectInputModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MainContainerLayoutComponent
