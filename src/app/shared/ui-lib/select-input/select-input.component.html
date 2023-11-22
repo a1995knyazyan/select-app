@@ -1,0 +1,33 @@
+<div class="os-element-container">
+  <mat-form-field class="os-input-style">
+    <mat-label>{{ label }}</mat-label>
+
+    <mat-select [formControl]="formControl" [value]="_value">
+      <mat-option *ngIf="visibleItemsCount >= 5">
+        <ngx-mat-select-search
+          #selectSearch
+          [disableInitialFocus]="true"
+          (change)="searchValueChanged(selectSearch.value)"
+          (click)="$event.stopPropagation();"
+          placeholderLabel="Search"
+          noEntriesFoundLabel="No matches"
+        >
+          <span ngxMatSelectSearchClear>X</span>
+        </ngx-mat-select-search>
+      </mat-option>
+      <ng-container *ngIf="!!items">
+        <cdk-virtual-scroll-viewport itemSize="20" class="viewport">
+          <ng-container *cdkVirtualFor="let optionValue of items; let i = index" class="item">
+            <mat-option
+              *ngIf="i < visibleItemsCount"
+              (click)="valueChanged(optionValue.id)"
+              [value]="optionValue.id"
+            >
+              {{ optionValue.name }}
+            </mat-option>
+          </ng-container>
+        </cdk-virtual-scroll-viewport>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+</div>

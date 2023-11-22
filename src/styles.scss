@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html, body { height: 100%; }
+h1 { text-align: center }
+
+@include mat.core();
+
+$mat-density: 0;
+$mat-theme-primary-palette: map-merge(mat.$cyan-palette, (501: #2eafba, 701: #107780, contrast: (501: #ffffff, 100: #2eafba,)));
+$mat-theme-primary: mat.define-palette(
+    $mat-theme-primary-palette,
+  $default: 501,
+  $lighter: 100,
+  $darker: 701,
+  $text: 500
+);
+
+$mat-theme-accent-palette: map-merge(mat.$teal-palette, (501: #2eafba, contrast: (A100: white, A200: white,)));
+$mat-theme-accent: mat.define-palette(
+    $mat-theme-accent-palette,
+  $default: 501,
+  $lighter: A100,
+  $darker: A200,
+  $text: 600
+);
+
+$mat-theme-warn-palette: map-merge(mat.$pink-palette, ());
+$mat-theme-warn: mat.define-palette(
+    $mat-theme-warn-palette,
+  $default: A200,
+  $lighter: 500,
+  $darker: 500,
+  $text: A700
+);
+
+$mat-core-theme: mat.define-light-theme((
+  color: (
+    primary: $mat-theme-primary,
+    accent: $mat-theme-accent,
+    warn: $mat-theme-warn
+  ),
+  density: $mat-density
+));
+
+@include mat.all-component-themes($mat-core-theme);
+

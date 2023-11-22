@@ -1,0 +1,32 @@
+<h1>Select Component Usages</h1>
+<form [formGroup]="selectFormGroup" class="form-container">
+  <div class="form-field">
+    <p>Example formControlName</p>
+    <select-input
+      [items]="(items$ | async)!"
+      [visibleItemsCount]="6"
+      (valueChangedEvent)="selectItemEventHandler($event)"
+      (searchValueChangeEvent)="searchInputValueChange($event)"
+      formControlName="selectControl1"
+    ></select-input>
+  </div>
+  <div class="form-field">
+    <p>Example formControl</p>
+    <select-input
+      [items]="(items$ | async)!"
+      [visibleItemsCount]="3"
+      (valueChangedEvent)="selectItemEventHandler($event)"
+      (searchValueChangeEvent)="searchInputValueChange($event)"
+      [formControl]="selectControl2"
+    ></select-input>
+  </div>
+</form>
+<!--<form>-->
+<!--  <div class="form-field">-->
+<!--    <select-input-->
+<!--      [items]="(items$ | async)!"-->
+<!--      [(ngModel)]="searchInputValue"-->
+<!--      (ngModelChange)="searchInputValueChange($event)"-->
+<!--    ></select-input>-->
+<!--  </div>-->
+<!--</form>-->
